@@ -17,7 +17,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryConfig;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
+<<<<<<< HEAD
 import Autonav.Firstpath;
+=======
+import frc.robot.Utils.ConvertToDegrees;
+>>>>>>> a697d2a1149769b0900aa940ff7b50b224cc08df
 
 import java.util.List;
 
@@ -94,30 +98,13 @@ public class Robot extends TimedRobot {
     double speed = m_speedLimiter.calculate(Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2))) * Drivetrain.kMaxSpeed;
     speed = Math.abs(speed);
 
-    double degrees = 0;
-
-    if (x == 0) {
-        degrees = (y < 0) ? 270 : 90;
-    } else {
-        degrees = Math.toDegrees(Math.atan(y / x));
-
-        if (y == 0) {
-            degrees = (x < 0) ? 180 : 0;
-        }
-    }
-
-    if (x < 0) {
-        degrees += 180;
-    } else if (y < 0) {
-        degrees += 360;
-    }
-
-    degrees -= 90;
-
+    double degrees = ConvertToDegrees.getDegrees(x, y);
+    
     m_drive.drive(speed, degrees, 0);
 
     SmartDashboard.putString("speed and angle", "Speed: " + speed + " | Angle: " + degrees);
   }
+
 
   @Override
   public void simulationPeriodic() {
