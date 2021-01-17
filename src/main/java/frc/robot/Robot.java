@@ -17,6 +17,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryConfig;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
+import Autonav.Firstpath;
+
 import java.util.List;
 
 public class Robot extends TimedRobot {
@@ -32,6 +34,8 @@ public class Robot extends TimedRobot {
   private final RamseteController m_ramsete = new RamseteController();
   private final Timer m_timer = new Timer();
   private Trajectory m_trajectory;
+
+  Firstpath first = new Firstpath();
 
   @Override
   public void robotInit() {
@@ -56,15 +60,14 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     m_timer.reset();
     m_timer.start();
+
+    first.FirstInit(m_drive, m_trajectory);
     
-    m_drive.resetOdometry(m_trajectory.getInitialPose());
   }
 
   @Override
   public void autonomousPeriodic() {
-    double elapsed = m_timer.get();
-    Trajectory.State reference = m_trajectory.sample(elapsed);
-    ChassisSpeeds speeds = m_ramsete.calculate(m_drive.getPose(), reference);
+    first.FirstPeriodic(m_drive, m_trajectory, m_timer, m_ramsete);
     // m_drive.drive(speeds.vxMetersPerSecond, speeds.omegaRadiansPerSecond);
   }
 

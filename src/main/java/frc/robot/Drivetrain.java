@@ -73,7 +73,7 @@ public class Drivetrain {
     m_frontLeftLocation, m_frontRightLocation, m_backLeftLocation, m_backRightLocation
   );
 
-  double distanceTravelledInMeters = 0;
+  public double distanceTravelledInMeters = 0;
 
   private final SwerveDriveOdometry s_odometry = new SwerveDriveOdometry(s_kinematics, m_gyro.getRotation2d());
  
