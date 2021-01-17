@@ -1,4 +1,4 @@
-package Autonav;
+package frc.robot.Autonav;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.controller.RamseteController;

@@ -17,13 +17,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryConfig;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
-<<<<<<< HEAD
-import Autonav.Firstpath;
-=======
 import frc.robot.Utils.ConvertToDegrees;
->>>>>>> a697d2a1149769b0900aa940ff7b50b224cc08df
 
 import java.util.List;
+
+import Autonav.Firstpath;
 
 public class Robot extends TimedRobot {
   
