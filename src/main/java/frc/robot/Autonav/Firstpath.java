@@ -16,6 +16,8 @@ public class Firstpath {
     DoubleFunction<Double> firstEquationDerivative;
     DecimalFormat df = new DecimalFormat("###.####");
 
+    boolean stopMoving = false;
+
     public void FirstInit(Drivetrain drive, Trajectory trajectory){
 
         drive.resetOdometry(trajectory.getInitialPose());
@@ -25,20 +27,24 @@ public class Firstpath {
     }
 
     public void FirstPeriodic(Drivetrain drive, Trajectory trajectory, Timer timer, RamseteController ramsete){
-
-        drive.drive(3.0, GetDegree(drive.distanceTravelledInMeters), 0);
-
+        double degree = GetDegree(drive.distanceTravelledInMeters);
+        if (!stopMoving)
+            drive.drive(3.0, degree, 0);
+        else{
+            drive.drive(0.0, 0, 0);
+        }
     }
 
     public double GetDegree(double distance){
-        if (distance <= 10){
+        if (distance <= 4.703){
             double slope = -firstEquationDerivative.apply(distance);
             return ConvertToDegrees.getDegrees(slope, 1);
         } else if (distance <= 20){
+            stopMoving = true;
             return StepTwo();
         } else if (distance <= 30){
             return StepThree();
-        } else if (distance > 30 && distance <= 40){
+        } else if (distance <= 40){
             return StepFour();
         } else if (distance > 40 && distance <= 50){
             return StepFive();
