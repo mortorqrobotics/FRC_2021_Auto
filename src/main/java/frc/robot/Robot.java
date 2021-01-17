@@ -21,7 +21,7 @@ import frc.robot.Utils.ConvertToDegrees;
 
 import java.util.List;
 
-import Autonav.Firstpath;
+import frc.robot.Autonav.Firstpath;
 
 public class Robot extends TimedRobot {
   

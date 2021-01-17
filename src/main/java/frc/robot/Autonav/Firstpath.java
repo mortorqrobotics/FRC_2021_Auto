@@ -1,17 +1,27 @@
 package frc.robot.Autonav;
 
+import java.text.DecimalFormat;
+import java.util.function.DoubleFunction;
+
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.controller.RamseteController;
 import edu.wpi.first.wpilibj.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import frc.robot.Drivetrain;
+import frc.robot.Utils.ConvertToDegrees;
+import frc.robot.Utils.Derivative;
 
 public class Firstpath {
     
+    DoubleFunction<Double> firstEquationDerivative;
+    DecimalFormat df = new DecimalFormat("###.####");
+
     public void FirstInit(Drivetrain drive, Trajectory trajectory){
 
         drive.resetOdometry(trajectory.getInitialPose());
 
+        DoubleFunction<Double> firstEquation = (x) -> 3.87 + 0.17*x + 0.0627*(x*x) + -0.0201* (x * x * x);
+        firstEquationDerivative = Derivative.derive(firstEquation);
     }
 
     public void FirstPeriodic(Drivetrain drive, Trajectory trajectory, Timer timer, RamseteController ramsete){
@@ -22,7 +32,8 @@ public class Firstpath {
 
     public double GetDegree(double distance){
         if (distance <= 10){
-            return StepOne();
+            double slope = -firstEquationDerivative.apply(distance);
+            return ConvertToDegrees.getDegrees(slope, 1);
         } else if (distance <= 20){
             return StepTwo();
         } else if (distance <= 30){
