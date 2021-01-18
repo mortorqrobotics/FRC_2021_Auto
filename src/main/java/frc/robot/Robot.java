@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryConfig;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
-import frc.robot.Utils.ConvertToDegrees;
+import frc.robot.Utils.Convert;
 
 import java.util.List;
 
@@ -96,7 +96,7 @@ public class Robot extends TimedRobot {
     double speed = m_speedLimiter.calculate(Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2))) * Drivetrain.kMaxSpeed;
     speed = Math.abs(speed);
 
-    double degrees = ConvertToDegrees.getDegrees(x, y);
+    double degrees = Convert.getDegrees(x, y);
     
     m_drive.drive(speed, degrees, 0);
 

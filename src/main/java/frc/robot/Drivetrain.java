@@ -94,7 +94,7 @@ public class Drivetrain {
 
   public void drive(double speed, double theta, double rotation) {
     double distanceInMeter = m_kinematics.toWheelSpeeds(new ChassisSpeeds(speed, 0, 0)).leftMetersPerSecond;
-    distanceTravelledInMeters += distanceInMeter * .02;
+    distanceTravelledInMeters += distanceInMeter * .020;
     s_moduleState.speedMetersPerSecond = distanceInMeter;
     s_moduleState.angle = Rotation2d.fromDegrees(theta);
   }
@@ -117,6 +117,7 @@ public class Drivetrain {
     s_moduleState.speedMetersPerSecond = 0;
     distanceTravelledInMeters = 0;
   }
+
 
   public Pose2d getPose() {
     return s_odometry.getPoseMeters();

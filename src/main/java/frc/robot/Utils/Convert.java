@@ -1,8 +1,6 @@
 package frc.robot.Utils;
 
-import edu.wpi.first.wpilibj.geometry.Rotation2d;
-
-public class ConvertToDegrees {
+public class Convert {
     
     public static double getDegrees(double x, double y) {
         double degrees = 0;
