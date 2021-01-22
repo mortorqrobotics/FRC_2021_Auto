@@ -75,7 +75,7 @@ public class Firstpath {
 
         switch (state) {
             case FIRST_EQUATION:
-                if (distance > 5.06) {
+                if (distance > 5.06) { //Distance of first equation
                     state = State.SECOND_EQUATION;
                 }
 
