@@ -4,7 +4,8 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.GenericHID;
+import java.util.List;
+
 import edu.wpi.first.wpilibj.SlewRateLimiter;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
@@ -12,16 +13,14 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.controller.RamseteController;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
-import edu.wpi.first.wpilibj.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryConfig;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
-import frc.robot.Utils.Convert;
-
-import java.util.List;
-
 import frc.robot.Autonav.Firstpath;
+import frc.robot.Autonav.Secondpath;
+import frc.robot.Autonav.Thirdpath;
+import frc.robot.Utils.Convert;
 
 public class Robot extends TimedRobot {
   
@@ -38,6 +37,7 @@ public class Robot extends TimedRobot {
   private Trajectory m_trajectory;
 
   Firstpath first = new Firstpath();
+  Secondpath second = new Secondpath();
 
   @Override
   public void robotInit() {
@@ -63,13 +63,18 @@ public class Robot extends TimedRobot {
     m_timer.reset();
     m_timer.start();
 
-    first.FirstInit(m_drive, m_trajectory);
+    //first.FirstInit(m_drive, m_trajectory);
+    second.SecondInit(m_drive, m_trajectory);
+    //third.ThirdInit(m_drive, m_trajectory);
     
   }
 
   @Override
   public void autonomousPeriodic() {
-    first.FirstPeriodic(m_drive, m_trajectory, m_timer, m_ramsete);
+    //first.FirstPeriodic(m_drive, m_trajectory, m_timer, m_ramsete);
+    second.SecondPeriodic(m_drive, m_trajectory, m_timer, m_ramsete);
+    //third.ThirdPeriodic(m_drive, m_trajectory, m_timer, m_ramsete);
+    
     // m_drive.drive(speeds.vxMetersPerSecond, speeds.omegaRadiansPerSecond);
   }
 

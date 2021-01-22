@@ -105,14 +105,14 @@ public class Drivetrain {
     //     m_gyro.getRotation2d(), m_leftEncoder.getDistance(), m_rightEncoder.getDistance());
   }
 
-  public void resetOdometry(Pose2d pose) {
+  public void resetOdometry(Pose2d pose2d) {
     // m_leftEncoder.reset();
     // m_rightEncoder.reset();
     // m_drivetrainSimulator.setPose(pose);
     // m_odometry.resetPosition(pose, m_gyro.getRotation2d());
 
     // swerve
-    s_odometry.resetPosition(pose, m_gyro.getRotation2d());
+    s_odometry.resetPosition(pose2d, m_gyro.getRotation2d());
     s_moduleState.angle = Rotation2d.fromDegrees(0);
     s_moduleState.speedMetersPerSecond = 0;
     distanceTravelledInMeters = 0;

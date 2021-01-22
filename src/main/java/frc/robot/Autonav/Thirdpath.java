@@ -11,19 +11,25 @@ import frc.robot.Drivetrain;
 import frc.robot.Utils.Convert;
 import frc.robot.Utils.Derivative;
 import frc.robot.Utils.Tangent;
+import edu.wpi.first.wpilibj.geometry.Pose2d;
+import edu.wpi.first.wpilibj.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.geometry.Translation2d;
 
-public class Firstpath {
+public class Thirdpath {
     
+    
+
     DoubleFunction<Double> firstEquationDerivative;
+    DoubleFunction<Double> secondEquationDerivative;
     DoubleFunction<Double> thirdEquationDerivative;
     DoubleFunction<Double> fourthEquationDerivative;
+    DoubleFunction<Double> fifthEquationDerivative;
+    DoubleFunction<Double> sixthEquationDerivative;
     DecimalFormat df = new DecimalFormat("###.####");
 
     boolean stopMoving = false;
 
-    Tangent firstCircle;
-    Tangent secondCircle;
-    Tangent thirdCircle;
+    Tangent circle;
 
     State state;
 
@@ -33,32 +39,39 @@ public class Firstpath {
         THIRD_EQUATION,
         FOURTH_EQUATION,
         FIFTH_EQUATION,
-        SIXTH_EQUATION,
-        SEVENTH_EQUATION;
+        SIXTH_EQUATION;
     }
 
-    public void FirstInit(Drivetrain drive, Trajectory trajectory){
+    public void ThirdInit(Drivetrain drive, Trajectory trajectory){
 
-        drive.resetOdometry(trajectory.getInitialPose());
+        drive.resetOdometry(new Pose2d(new Translation2d(1.9, 1.152), Rotation2d.fromDegrees(0)));
 
-        DoubleFunction<Double> firstEquation = (x) -> 3.87 + 0.17*x + 0.0627*(x*x) + -0.0201* (x * x * x);
+        DoubleFunction<Double> firstEquation = (x) -> x; //formula 1
         firstEquationDerivative = Derivative.derive(firstEquation);
 
-        DoubleFunction<Double> thirdEquation = (x) -> -2.81+3.19*x+-0.511*x*x + 0.0279*(x*x*x);
+        DoubleFunction<Double> secondEquation = (x) -> x; //formula 2
+        secondEquationDerivative = Derivative.derive(secondEquation);
+
+        DoubleFunction<Double> thirdEquation = (x) -> x; //formula 3
         thirdEquationDerivative = Derivative.derive(thirdEquation);
 
-        fourthEquationDerivative = (x) -> -5.9285 + 2 * 0.275 * x;
+        DoubleFunction<Double> fourthEquation = (x) -> x; //formula 4
+        fourthEquationDerivative = Derivative.derive(fourthEquation);
 
-        firstCircle = new Tangent(Math.sqrt(1.2), 11.156);
+        DoubleFunction<Double> fifthEquation = (x) -> x; //formula 5
+        fifthEquationDerivative = Derivative.derive(fifthEquation);
+
+        DoubleFunction<Double> sixthEquation = (x) -> x; //formula 6
+        sixthEquationDerivative = Derivative.derive(sixthEquation);
+
+
         state = State.FIRST_EQUATION;
 
-        secondCircle = new Tangent(Math.sqrt(1.2), -13.136);
-        thirdCircle = new Tangent(Math.sqrt(1.2), -30.14);
 
         stopMoving = false;
     }
 
-    public void FirstPeriodic(Drivetrain drive, Trajectory trajectory, Timer timer, RamseteController ramsete){
+    public void ThirdPeriodic(Drivetrain drive, Trajectory trajectory, Timer timer, RamseteController ramsete){
         double degree = GetDegree(drive, drive.distanceTravelledInMeters);
         if (!stopMoving)
             drive.drive(3.0, degree, 0);
@@ -71,11 +84,11 @@ public class Firstpath {
     double slope;
     public double GetDegree(Drivetrain drive, double distance){
         // 4.9 / 7.07
-        x = drive.getPose().getX() - 2.1;
+        x = drive.getPose().getX() - 1.9;
 
         switch (state) {
             case FIRST_EQUATION:
-                if (distance > 5.06) {
+                if (distance > 0) {
                     state = State.SECOND_EQUATION;
                 }
 
@@ -83,54 +96,48 @@ public class Firstpath {
                 return Convert.getDegrees(slope, 1);
 
             case SECOND_EQUATION:
-                distance -= 5.06;
+                distance -= 0;
 
-                if (distance > firstCircle.circumference)
+                if (distance > 00)
                     state = State.THIRD_EQUATION;
                 
-                return firstCircle.getDegree(distance);
+                slope = secondEquationDerivative.apply(x);
+                return Convert.getDegrees(slope, 1);
             
 
             case THIRD_EQUATION:
-                distance -= 5.06 + firstCircle.circumference;
+                distance -= 0 + 00;
 
-                if (distance > 3.4139) 
+                if (distance > 000) 
                     state = State.FOURTH_EQUATION;
 
                 slope = -thirdEquationDerivative.apply(x);
                 return Convert.getDegrees(slope, 1);
 
             case FOURTH_EQUATION:
-                distance -= 5.06 + firstCircle.circumference + 3.4139;
+                distance -= 0 + 00 + 000;
 
-                if (distance > 5.98)
+                if (distance > 0000)
                     state = State.FIFTH_EQUATION;
                 
-                return -secondCircle.getDegree(distance);
+                    slope = -fourthEquationDerivative.apply(x);
+                    return Convert.getDegrees(slope, 1);
 
             case FIFTH_EQUATION:
-                distance -= 5.06 + firstCircle.circumference + 3.4139 + 5.98;
+                distance -= 0 + 00 + 000 + 0000;
 
-                if (distance > 4.882)
+                if (distance > 00000)
                     state = State.SIXTH_EQUATION;
 
-                slope = -fourthEquationDerivative.apply(x);
+                slope = -fifthEquationDerivative.apply(x);
                 return Convert.getDegrees(slope, 1);
 
-            case SIXTH_EQUATION:
-                distance -= 5.06 + firstCircle.circumference + 3.4139 + 5.98 + 4.882;
-
-                if (distance > 4.018) {
-                    slope = -(4.8 - drive.getPose().getY()) / (0 - drive.getPose().getX());
-                    state = State.SEVENTH_EQUATION;
-                }
-            
-                return -secondCircle.getDegree(distance);   
-
             default:
-                if (x <= 0)
-                    stopMoving = true;
-                return Convert.getDegrees(slope, 1) + 180;
+                
+            distance -= 0 + 00 + 000 + 0000 + 00000;
+                
+            slope = -sixthEquationDerivative.apply(x);
+            return Convert.getDegrees(slope, 1); 
         }
     }
 
