@@ -57,7 +57,7 @@ public class Secondpath {
         DoubleFunction<Double> thirdEquation = (x) -> 19.3 + -6.46*x + 0.987*x*x + -0.0515*(x*x*x);
         thirdEquationDerivative = Derivative.derive(thirdEquation);
 
-        circle = new Tangent(Math.sqrt(1.2), -88.389); //Circle (radius, offset)
+        circle = new Tangent(Math.sqrt(2.8), -88.389); //Circle (radius, offset)
 
         DoubleFunction<Double> fifthEquation = (x) -> -30.3 + 13.6*x + -1.96*x*x + 0.0934*(x*x*x);
         fifthEquationDerivative = Derivative.derive(fifthEquation);
@@ -115,7 +115,7 @@ public class Secondpath {
                 if (distance > 5.191) 
                     state = State.FOURTH_EQUATION;
 
-                slope = -thirdEquationDerivative.apply(x);
+                slope = -thirdEquationDerivative.apply(x) / 1.3;
                 return Convert.getDegrees(slope, 1);
 
             case FOURTH_EQUATION: //Circle
