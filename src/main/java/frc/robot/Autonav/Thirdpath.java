@@ -118,7 +118,7 @@ public class Thirdpath {
 
                 distance -= 3.691 + 6.994;
 
-                if (distance > 5.154) 
+                if (distance > 5.254) 
                     state = State.FOURTH_EQUATION;
 
                 slope = -thirdEquationDerivative.apply(x);

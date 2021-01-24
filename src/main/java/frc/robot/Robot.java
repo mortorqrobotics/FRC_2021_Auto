@@ -65,7 +65,7 @@ public class Robot extends TimedRobot {
     m_timer.reset();
     m_timer.start();
 
-    //first.FirstInit(m_drive, m_trajectory);
+    // first.FirstInit(m_drive, m_trajectory);
     //second.SecondInit(m_drive, m_trajectory);
     third.ThirdInit(m_drive, m_trajectory);
     
@@ -73,7 +73,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousPeriodic() {
-    //first.FirstPeriodic(m_drive, m_trajectory, m_timer, m_ramsete);
+    // first.FirstPeriodic(m_drive, m_trajectory, m_timer, m_ramsete);
     //second.SecondPeriodic(m_drive, m_trajectory, m_timer, m_ramsete);
     third.ThirdPeriodic(m_drive, m_trajectory, m_timer, m_ramsete);
     
