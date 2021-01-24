@@ -65,16 +65,26 @@ public class Robot extends TimedRobot {
     m_timer.reset();
     m_timer.start();
 
+<<<<<<< HEAD
     // first.FirstInit(m_drive, m_trajectory);
     // second.SecondInit(m_drive, m_trajectory);
+=======
+    //first.FirstInit(m_drive, m_trajectory);
+    //second.SecondInit(m_drive, m_trajectory);
+>>>>>>> dd0a3bf22a319ff85c8149586566e7c0d9c3ede9
     third.ThirdInit(m_drive, m_trajectory);
     
   }
 
   @Override
   public void autonomousPeriodic() {
+<<<<<<< HEAD
     // first.FirstPeriodic(m_drive, m_trajectory, m_timer, m_ramsete);
     // second.SecondPeriodic(m_drive, m_trajectory, m_timer, m_ramsete);
+=======
+    //first.FirstPeriodic(m_drive, m_trajectory, m_timer, m_ramsete);
+    //second.SecondPeriodic(m_drive, m_trajectory, m_timer, m_ramsete);
+>>>>>>> dd0a3bf22a319ff85c8149586566e7c0d9c3ede9
     third.ThirdPeriodic(m_drive, m_trajectory, m_timer, m_ramsete);
     
     // m_drive.drive(speeds.vxMetersPerSecond, speeds.omegaRadiansPerSecond);
