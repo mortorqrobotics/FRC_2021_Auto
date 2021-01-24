@@ -50,16 +50,18 @@ public class Thirdpath {
 
         drive.resetOdometry(new Pose2d(new Translation2d(1.84, 4.17), Rotation2d.fromDegrees(0)));
 
-        DoubleFunction<Double> firstEquation = (x) -> 3.99 + 0.41*x + -1.04*x*x + 0.782*x*x*x; //formula 1
+        DoubleFunction<Double> firstEquation = (x) -> 4.19 + 0.41*x + -1.04*x*x + 0.782*x*x*x; //formula 1
         firstEquationDerivative = Derivative.derive(firstEquation);
 
-        DoubleFunction<Double> secondEquation = (x) -> 19.6 + -10.6*x + 2.06*x*x + -0.133*x*x*x; //formula 2
+        DoubleFunction<Double> secondEquation = (x) -> 21.33 + -11.66*(x-0.1) + 2.266*(x-0.1)*(x-0.1) + -0.1463*(x-0.1)*(x-0.1)*(x-0.1); //formula 2
         secondEquationDerivative = Derivative.derive(secondEquation);
 
         DoubleFunction<Double> thirdEquation = (x) -> 90.29 + -34.25*(x+0.7) + 3.275*(x+0.7)*(x+0.7); //formula 3
         thirdEquationDerivative = Derivative.derive(thirdEquation);
 
-        DoubleFunction<Double> fourthEquation = (x) -> -2.2982*x*x*x + 49.381*x*x - 353.46*x + 844.48; //formula 4
+        // DoubleFunction<Double> fourthEquation = (x) -> -2.2982*x*x*x + 49.381*x*x - 353.46*x + 844.48; //formula 4
+        DoubleFunction<Double> fourthEquation = (x) -> 1621*Math.pow(Math.E, -0.965*x); //formula 4
+        //1621e^-0.965x
         fourthEquationDerivative = Derivative.derive(fourthEquation);
 
         DoubleFunction<Double> fifthEquation = (x) -> 10.8 - 2.35*x + 0.15*x*x; //formula 5
@@ -68,7 +70,7 @@ public class Thirdpath {
         DoubleFunction<Double> sixthEquation = (x) -> 1082 + -237*x + 13*x*x; //formula 6
         sixthEquationDerivative = Derivative.derive(sixthEquation);
 
-        DoubleFunction<Double> seventhEquation = (x) -> 88.7 + -14.49*x + 0.6219*x*x; //formula 7
+        DoubleFunction<Double> seventhEquation = (x) -> 97.27 + -15.939*x + 0.68409*x*x; //formula 7
         seventhEquationDerivative = Derivative.derive(seventhEquation);
 
         eighthEquationDerivative = (x) -> x * 0;
@@ -94,7 +96,7 @@ public class Thirdpath {
 
         switch (state) {
             case FIRST_EQUATION:
-                if (distance > 3.482) {
+                if (distance > 3.691) {
                     state = State.SECOND_EQUATION;
                 }
 
@@ -103,9 +105,9 @@ public class Thirdpath {
 
             case SECOND_EQUATION:
             
-                distance -= 3.482;
+                distance -= 3.691;
 
-                if (distance > 5.973)
+                if (distance > 6.994)
                     state = State.THIRD_EQUATION;
                 
                 slope = -secondEquationDerivative.apply(x);
@@ -114,7 +116,7 @@ public class Thirdpath {
 
             case THIRD_EQUATION:
 
-                distance -= 3.482 + 5.973;
+                distance -= 3.691 + 6.994;
 
                 if (distance > 5.154) 
                     state = State.FOURTH_EQUATION;
@@ -123,17 +125,18 @@ public class Thirdpath {
                 return Convert.getDegrees(slope, 1);
 
             case FOURTH_EQUATION:
-                distance -= 3.482 + 5.973 + 5.154;
+                distance -= 3.691 + 6.994 + 5.154;
 
-                if (distance > 5.758)
+                // if (distance > 5.758)
+                if (distance > 5.058)
                     state = State.FIFTH_EQUATION;
                 
-                    slope = -fourthEquationDerivative.apply(x);
-                    return Convert.getDegrees(slope, 1);
+                slope = -fourthEquationDerivative.apply(x) * 2.1;
+                return Convert.getDegrees(slope, 1);
 
             case FIFTH_EQUATION:
-                // stopMoving = true;
-                distance -= 3.482 + 5.973 + 5.154 + 5.758;
+            // stopMoving = true;
+                distance -= 3.691 + 6.994 + 5.154 + 5.758;
 
                 if (distance > 1.641)
                     state = State.SIXTH_EQUATION;
@@ -142,9 +145,9 @@ public class Thirdpath {
                 return Convert.getDegrees(slope, 1);
 
             case SIXTH_EQUATION:
-                distance -= 3.482 + 5.973 + 5.154 + 5.758 + 1.641;
+                distance -= 3.691 + 6.994 + 5.154 + 5.758 + 1.641;
 
-                if (distance > 7)
+                if (distance > 5.495)
                     state = State.SEVENTH_EQUATION;
 
                 slope = -sixthEquationDerivative.apply(x);
@@ -152,9 +155,9 @@ public class Thirdpath {
 
             case SEVENTH_EQUATION:
             // stopMoving = true;
-                distance -= 3.482 + 5.973 + 5.154 + 5.758 + 1.641 + 7;
+                distance -= 3.691 + 6.994 + 5.154 + 5.758 + 1.641 + 5.495;
 
-                if (distance > 2.912)
+                if (distance > 3.083)
                     state = State.EIGHTH_EQUATION;
 
                 slope = -seventhEquationDerivative.apply(x);
@@ -162,7 +165,7 @@ public class Thirdpath {
 
             default:
                 
-                distance -= 3.482 + 5.973 + 5.154 + 5.758 + 1.641 + 7 + 2.912;
+                distance -= 3.691 + 6.994 + 5.154 + 5.758 + 1.641 + 5.495 + 3.083;
                     
                 if (drive.getPose().getX() > 14.7) {
                     stopMoving = true;
