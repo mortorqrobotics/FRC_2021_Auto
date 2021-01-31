@@ -59,7 +59,7 @@ public class Drivetrain {
   private final SimpleMotorFeedforward m_feedforward = new SimpleMotorFeedforward(1, 3);
 
   // Simulation classes help us simulate our robot
-  private final SimGyro simGyro = new SimGyro("NavX");
+  public final SimGyro simGyro = new SimGyro("NavX");
   private final Field2d m_fieldSim = new Field2d();
 
   // Locations for the swerve drive modules relative to the robot center.
@@ -104,7 +104,7 @@ public class Drivetrain {
 
   public void drive(double speed, double theta, double rotation) {
 
-    if (speed == 0 && rotation > 0) {
+    if (speed == 0 && rotation != 0) {
         double distanceInMeter = m_kinematics.toWheelSpeeds(new ChassisSpeeds(rotation, 0, 0)).leftMetersPerSecond * .020;
         double angle = distanceInMeter * (360/.874);
 

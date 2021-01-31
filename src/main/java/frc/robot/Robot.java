@@ -20,6 +20,7 @@ import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
 import frc.robot.Autonav.Firstpath;
 import frc.robot.Autonav.Secondpath;
 import frc.robot.Autonav.Thirdpath;
+import frc.robot.GC.Red1;
 import frc.robot.Utils.Convert;
 
 public class Robot extends TimedRobot {
@@ -40,6 +41,8 @@ public class Robot extends TimedRobot {
   Secondpath second = new Secondpath();
   Thirdpath third = new Thirdpath();
 
+
+  Red1 red1 = new Red1();
 
   @Override
   public void robotInit() {
@@ -67,8 +70,9 @@ public class Robot extends TimedRobot {
 
     // first.FirstInit(m_drive, m_trajectory);
     // second.SecondInit(m_drive, m_trajectory);
-    third.ThirdInit(m_drive, m_trajectory);
+    // third.ThirdInit(m_drive, m_trajectory);
     
+    red1.init(m_drive);
   }
 
   @Override
@@ -77,7 +81,9 @@ public class Robot extends TimedRobot {
     // second.SecondPeriodic(m_drive, m_trajectory, m_timer, m_ramsete);
     // third.ThirdPeriodic(m_drive, m_trajectory, m_timer, m_ramsete);
 
-    m_drive.drive(0, 0, m_speedLimiter.calculate(.2) * Drivetrain.kMaxSpeed);
+    // m_drive.drive(0, 0, m_speedLimiter.calculate(.2) * Drivetrain.kMaxSpeed);
+
+    red1.periodic(m_drive);
   }
 
   @Override
