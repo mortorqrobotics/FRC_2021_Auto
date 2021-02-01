@@ -106,14 +106,21 @@ public class Drivetrain {
 
     if (speed == 0 && rotation != 0) {
         double distanceInMeter = m_kinematics.toWheelSpeeds(new ChassisSpeeds(rotation, 0, 0)).leftMetersPerSecond * .020;
+        distanceInMeter = Math.abs(distanceInMeter);
         double angle = distanceInMeter * (360/.874);
 
         double oldAngle = simGyro.getHeading().getDegrees();
-        double newAngle = oldAngle + angle;
+
+        double newAngle = (rotation > 0) ? oldAngle + angle : oldAngle - angle;
 
         simGyro.setHeading(Rotation2d.fromDegrees(newAngle));
         distanceTravelledInMeters += distanceInMeter;
 
+      s_moduleState.speedMetersPerSecond = 0;
+      s_moduleState.angle = Rotation2d.fromDegrees(0);
+  
+      frontLeft_moduleState.speedMetersPerSecond = frontRight_moduleState.speedMetersPerSecond = backLeft_moduleState.speedMetersPerSecond = backRight_moduleState.speedMetersPerSecond = s_moduleState.speedMetersPerSecond;
+      frontLeft_moduleState.angle = frontRight_moduleState.angle = backLeft_moduleState.angle = backRight_moduleState.angle = s_moduleState.angle;
     }
 
     else {

@@ -81,7 +81,7 @@ public class Robot extends TimedRobot {
     // second.SecondPeriodic(m_drive, m_trajectory, m_timer, m_ramsete);
     // third.ThirdPeriodic(m_drive, m_trajectory, m_timer, m_ramsete);
 
-    // m_drive.drive(0, 0, m_speedLimiter.calculate(.2) * Drivetrain.kMaxSpeed);
+    // m_drive.drive(0, 0, .5);
 
     red1.periodic(m_drive);
   }
