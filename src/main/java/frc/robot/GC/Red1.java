@@ -11,6 +11,9 @@ public class Red1 {
         FIRST_DRIVE,
         SECOND_DRIVE,
         THIRD_DRIVE,
+        FOURTH_DRIVE,
+        FIFTH_DRIVE,
+        SIXTH_DRIVE,
         STOP;
     }
 
@@ -39,22 +42,48 @@ public class Red1 {
                 break;
 
             case SECOND_DRIVE:
-                drive.drive(0, 0, -0.05);
+                drive.drive(0, 0, -0.2);
 
-                if ((drive.distanceTravelledInMeters - 3.4) > (31.6/360) * 0.874) {
+                if ((drive.distanceTravelledInMeters - 3.4) > (26.6/360) * 0.874) {
                     state = States.THIRD_DRIVE;
                 }
                 break;
 
             case THIRD_DRIVE:
-                if (drive.distanceTravelledInMeters - 3.4 - (31.6/360) * 0.874 > 3.4) {
-                    state = States.STOP;
+                if (drive.distanceTravelledInMeters - 3.4 - (31.6/360) * 0.874 > 3.2) {
+                    state = States.FOURTH_DRIVE;
                 }
 
                 drive.drive(2, 180, 0);
 
                 break;
+            
+            case FOURTH_DRIVE:
+                drive.drive(0, 0, 0.2);
 
+                if (drive.distanceTravelledInMeters - 6.752 > ((100.0/360) * 0.874)) {
+                    state = States.FIFTH_DRIVE;
+                }
+
+                break;
+
+            case FIFTH_DRIVE:
+                drive.drive(2, 180, 0);
+
+                if (drive.distanceTravelledInMeters - 6.752 - ((100.0/360) * 0.874) > 4.3) {
+                    state = States.SIXTH_DRIVE;
+                }
+
+                break;
+
+            case SIXTH_DRIVE:
+                drive.drive(2, -drive.getPose().getRotation().getDegrees(), 0);
+
+                if (drive.getPose().getX() > 15.5) {
+                    state = States.STOP;
+                }
+
+                break;
             default:
                 drive.drive(0, 0, 0);
                 break;
