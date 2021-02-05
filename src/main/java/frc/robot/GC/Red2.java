@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.geometry.Translation2d;
 import frc.robot.Drivetrain;
-public class Blue2 {  
+public class Red2 {  
     public enum States {
         FIRST_DRIVE,
         SECOND_DRIVE,
@@ -20,8 +20,8 @@ public class Blue2 {
         this.state = state;
     }
     public void init(Drivetrain drive) {
-        // x and y: 0.588448, 4.097343
-        drive.resetOdometry(new Pose2d(new Translation2d(0.588, 2.74), Rotation2d.fromDegrees(180)));
+        // x and y: 0.588448, 5.519395
+        drive.resetOdometry(new Pose2d(new Translation2d(0.588, 5.519), Rotation2d.fromDegrees(180)));
         drive.simGyro.setHeading(Rotation2d.fromDegrees(0));
 
 
@@ -35,7 +35,7 @@ public class Blue2 {
             case FIRST_DRIVE:
                 drive.drive(2, 180, 0);
 
-                if (drive.distanceTravelledInMeters > 7.4) {
+                if (drive.distanceTravelledInMeters > 3.5) {
                     changeState(States.SECOND_DRIVE, drive);
 
                 }
@@ -43,7 +43,7 @@ public class Blue2 {
                 break;
 
             case SECOND_DRIVE:
-                drive.drive(0, 0, 0.25);
+                drive.drive(0, 0, -0.25);
 
                 if ((drive.distanceTravelledInMeters) > (46.0/360) * 0.874) {
                     changeState(States.THIRD_DRIVE, drive);
@@ -52,7 +52,7 @@ public class Blue2 {
                 break;
 
             case THIRD_DRIVE:
-                if (drive.distanceTravelledInMeters> 3.8) {
+                if (drive.distanceTravelledInMeters> 3.9) {
                     changeState(States.FOURTH_DRIVE, drive);
 
                 }
@@ -62,9 +62,9 @@ public class Blue2 {
                 break;
 
                 case FOURTH_DRIVE:
-                drive.drive(0, 0, -0.25);
+                drive.drive(0, 0, 0.25);
 
-                if ((drive.distanceTravelledInMeters) > (108.7/360) * 0.874) {
+                if ((drive.distanceTravelledInMeters) > (109.5/360) * 0.874) {
                     changeState(States.FIFTH_DRIVE, drive);
                 }
                 break;
@@ -73,15 +73,15 @@ public class Blue2 {
                 case FIFTH_DRIVE:
                 drive.drive(2, 180, 0.00);
 
-                if ((drive.distanceTravelledInMeters) > 3.95) {
+                if ((drive.distanceTravelledInMeters) > 4.15) {
                     changeState(States.SIXTH_DRIVE, drive);
                 }
                 break;
 
                 case SIXTH_DRIVE:
-                drive.drive(2, 225, 0);
+                drive.drive(2, 134.3, 0);
 
-                if ((drive.distanceTravelledInMeters) > 2.0) {
+                if ((drive.distanceTravelledInMeters) > 6.0) {
                     changeState(States.STOP, drive);
 
                 }

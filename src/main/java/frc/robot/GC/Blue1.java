@@ -78,7 +78,7 @@ public class Blue1 {
             case FIFTH_DRIVE:
                 drive.drive(2, 180, 0);
 
-                if (drive.distanceTravelledInMeters > 4.3) {
+                if (drive.distanceTravelledInMeters > 3.3) {
                     changeState(States.SIXTH_DRIVE, drive);
                 }
 
