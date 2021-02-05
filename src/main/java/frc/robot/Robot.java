@@ -22,6 +22,8 @@ import frc.robot.Autonav.Secondpath;
 import frc.robot.Autonav.Thirdpath;
 import frc.robot.GC.Blue1;
 import frc.robot.GC.Red1;
+import frc.robot.GC.Blue2;
+import frc.robot.GC.Red2;
 import frc.robot.Utils.Convert;
 
 public class Robot extends TimedRobot {
@@ -45,6 +47,8 @@ public class Robot extends TimedRobot {
 
   Red1 red1 = new Red1();
   Blue1 blue1 = new Blue1();
+  Red2 red2 = new Red2();
+  Blue2 blue2 = new Blue2();
 
   @Override
   public void robotInit() {
@@ -74,8 +78,11 @@ public class Robot extends TimedRobot {
     // second.SecondInit(m_drive, m_trajectory);
     // third.ThirdInit(m_drive, m_trajectory);
     
-    red1.init(m_drive);
-    // blue1.init(m_drive);
+    //red1.init(m_drive);
+    //blue1.init(m_drive);
+    // red2.init(m_drive);
+    blue2.init(m_drive);
+
   }
 
   @Override
@@ -86,8 +93,10 @@ public class Robot extends TimedRobot {
 
     // m_drive.drive(0, 0, .5);
 
-    red1.periodic(m_drive);
+    // red1.periodic(m_drive);
     // blue1.periodic(m_drive);
+    // red2.periodic(m_drive);
+    blue2.periodic(m_drive);
   }
 
   @Override
