@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryConfig;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
+import frc.robot.Autonav.Firstbezierpath;
 import frc.robot.Autonav.Firstpath;
 import frc.robot.Autonav.Secondpath;
 import frc.robot.Autonav.Thirdpath;
@@ -43,6 +44,7 @@ public class Robot extends TimedRobot {
   Firstpath first = new Firstpath();
   Secondpath second = new Secondpath();
   Thirdpath third = new Thirdpath();
+  Firstbezierpath firstBezier = new Firstbezierpath();
 
 
   Red1 red1 = new Red1();
@@ -77,11 +79,12 @@ public class Robot extends TimedRobot {
     // first.FirstInit(m_drive, m_trajectory);
     // second.SecondInit(m_drive, m_trajectory);
     // third.ThirdInit(m_drive, m_trajectory);
-    
+    firstBezier.FirstInit(m_drive, m_trajectory);
+
     //red1.init(m_drive);
     //blue1.init(m_drive);
     // red2.init(m_drive);
-    blue2.init(m_drive);
+    // blue2.init(m_drive);
 
   }
 
@@ -90,13 +93,14 @@ public class Robot extends TimedRobot {
     // first.FirstPeriodic(m_drive, m_trajectory, m_timer, m_ramsete);
     // second.SecondPeriodic(m_drive, m_trajectory, m_timer, m_ramsete);
     // third.ThirdPeriodic(m_drive, m_trajectory, m_timer, m_ramsete);
+    firstBezier.FirstPeriodic(m_drive, m_trajectory, m_timer, m_ramsete);
 
     // m_drive.drive(0, 0, .5);
 
     // red1.periodic(m_drive);
     // blue1.periodic(m_drive);
     // red2.periodic(m_drive);
-    blue2.periodic(m_drive);
+    // blue2.periodic(m_drive);
   }
 
   @Override
