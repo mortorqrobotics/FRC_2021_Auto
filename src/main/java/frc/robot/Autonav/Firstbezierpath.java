@@ -37,28 +37,21 @@ public class Firstbezierpath {
 
     public void FirstInit(Drivetrain drive, Trajectory trajectory){
 
-        drive.resetOdometry(new Pose2d(new Translation2d(3.9577, 6.8776), Rotation2d.fromDegrees(0)));
-        firstEquation = new BezierCurve((t) -> (39.5*Math.pow(t, 0)*Math.pow(1-t, 3)+253.5*Math.pow(t, 1)*Math.pow(1-t, 2)+354.0*Math.pow(t, 2)*Math.pow(1-t, 1)+131.5*Math.pow(t, 3)*Math.pow(1-t, 0)) * 0.1
-                                        , (t) -> (-82.0*Math.pow(t, 0)*Math.pow(1-t, 3)-201.0*Math.pow(t, 1)*Math.pow(1-t, 2)-199.5*Math.pow(t, 2)*Math.pow(1-t, 1)-82.0*Math.pow(t, 3)*Math.pow(1-t, 0)) * 0.1
-                                        , 9.632);
-        secondEquation = new BezierCurve((t) -> (131.0*Math.pow(t, 0)*Math.pow(1-t, 3)+454.5*Math.pow(t, 1)*Math.pow(1-t, 2)+423.0*Math.pow(t, 2)*Math.pow(1-t, 1)+121.0*Math.pow(t, 3)*Math.pow(1-t, 0)) * 0.1
-                                        , (t) -> (-81.0*Math.pow(t, 0)*Math.pow(1-t, 3)-300.0*Math.pow(t, 1)*Math.pow(1-t, 2)-367.5*Math.pow(t, 2)*Math.pow(1-t, 1)-118.0*Math.pow(t, 3)*Math.pow(1-t, 0)) * 0.1
-                                        , 5.548);
-        thirdEquation = new BezierCurve((t) -> (121.5*Math.pow(t, 0)*Math.pow(1-t, 3)+312.0*Math.pow(t, 1)*Math.pow(1-t, 2)+319.5*Math.pow(t, 2)*Math.pow(1-t, 1)+131.0*Math.pow(t, 3)*Math.pow(1-t, 0)) * 0.1
-                                        , (t) -> (-118.0*Math.pow(t, 0)*Math.pow(1-t, 3)-345.0*Math.pow(t, 1)*Math.pow(1-t, 2)-261.0*Math.pow(t, 2)*Math.pow(1-t, 1)-81.5*Math.pow(t, 3)*Math.pow(1-t, 0)) * 0.1
-                                        , 5.281);
-        fourthEquation = new BezierCurve((t) -> (131.5*Math.pow(t, 0)*Math.pow(1-t, 3)+646.5*Math.pow(t, 1)*Math.pow(1-t, 2)+718.5*Math.pow(t, 2)*Math.pow(1-t, 1)+215.5*Math.pow(t, 3)*Math.pow(1-t, 0)) * 0.1
-                                        , (t) -> (-81.0*Math.pow(t, 0)*Math.pow(1-t, 3)-228.0*Math.pow(t, 1)*Math.pow(1-t, 2)-145.5*Math.pow(t, 2)*Math.pow(1-t, 1)-36.0*Math.pow(t, 3)*Math.pow(1-t, 0)) * 0.1
-                                        , 11.880);
-        fifthEquation = new BezierCurve((t) -> (216.0*Math.pow(t, 0)*Math.pow(1-t, 3)+490.5*Math.pow(t, 1)*Math.pow(1-t, 2)+541.5*Math.pow(t, 2)*Math.pow(1-t, 1)+223.5*Math.pow(t, 3)*Math.pow(1-t, 0)) * 0.1
-                                        , (t) -> (-36.0*Math.pow(t, 0)*Math.pow(1-t, 3)-69.0*Math.pow(t, 1)*Math.pow(1-t, 2)-262.5*Math.pow(t, 2)*Math.pow(1-t, 1)-109.0*Math.pow(t, 3)*Math.pow(1-t, 0)) * 0.1
-                                        , 11.585);
-        sixthEquation = new BezierCurve((t) -> (223.5*Math.pow(t, 0)*Math.pow(1-t, 3)+820.5*Math.pow(t, 1)*Math.pow(1-t, 2)+873.0*Math.pow(t, 2)*Math.pow(1-t, 1)+235.5*Math.pow(t, 3)*Math.pow(1-t, 0)) * 0.1
-                                        , (t) -> (-109.0*Math.pow(t, 0)*Math.pow(1-t, 3)-409.5*Math.pow(t, 1)*Math.pow(1-t, 2)-204.0*Math.pow(t, 2)*Math.pow(1-t, 1)-77.0*Math.pow(t, 3)*Math.pow(1-t, 0)) * 0.1
-                                        , 10.315);
-        seventhEquation = new BezierCurve((t) -> (235.5*Math.pow(t, 0)*Math.pow(1-t, 3)+526.5*Math.pow(t, 1)*Math.pow(1-t, 2)+475.5*Math.pow(t, 2)*Math.pow(1-t, 1)+40.5*Math.pow(t, 3)*Math.pow(1-t, 0)) * 0.1
-                                        , (t) -> (-77.0*Math.pow(t, 0)*Math.pow(1-t, 3)-250.5*Math.pow(t, 1)*Math.pow(1-t, 2)-150.0*Math.pow(t, 2)*Math.pow(1-t, 1)-62.0*Math.pow(t, 3)*Math.pow(1-t, 0)) * 0.1
-                                        , 19.680);
+        drive.resetOdometry(new Pose2d(new Translation2d(1.98, 3.77), Rotation2d.fromDegrees(0)));
+        firstEquation = new BezierCurve((t) -> (39.5*Math.pow(t, 0.0)*Math.pow(1.0-t, 3.0)+253.5*Math.pow(t, 1.0)*Math.pow(1.0-t, 2.0)+354.0*Math.pow(t, 2.0)*Math.pow(1.0-t, 1.0)+131.5*Math.pow(t, 3.0)*Math.pow(1.0-t, 0.0)) * 0.06
+                                        , (t) -> (-82.0*Math.pow(t, 0.0)*Math.pow(1.0-t, 3.0)-201.0*Math.pow(t, 1.0)*Math.pow(1.0-t, 2.0)-199.5*Math.pow(t, 2.0)*Math.pow(1.0-t, 1.0)-82.0*Math.pow(t, 3.0)*Math.pow(1.0-t, 0.0)) * 0.054733);
+        secondEquation = new BezierCurve((t) -> (131.0*Math.pow(t, 0.0)*Math.pow(1.0-t, 3.0)+454.5*Math.pow(t, 1.0)*Math.pow(1.0-t, 2.0)+423.0*Math.pow(t, 2.0)*Math.pow(1.0-t, 1.0)+121.0*Math.pow(t, 3.0)*Math.pow(1.0-t, 0.0)) * 0.06
+                                        , (t) -> (-81.0*Math.pow(t, 0.0)*Math.pow(1.0-t, 3.0)-300.0*Math.pow(t, 1.0)*Math.pow(1.0-t, 2.0)-367.5*Math.pow(t, 2.0)*Math.pow(1.0-t, 1.0)-118.0*Math.pow(t, 3.0)*Math.pow(1.0-t, 0.0)) * 0.054733);
+        thirdEquation = new BezierCurve((t) -> (121.5*Math.pow(t, 0.0)*Math.pow(1.0-t, 3.0)+312.0*Math.pow(t, 1.0)*Math.pow(1.0-t, 2.0)+319.5*Math.pow(t, 2.0)*Math.pow(1.0-t, 1.0)+131.0*Math.pow(t, 3.0)*Math.pow(1.0-t, 0.0)) * 0.06
+                                        , (t) -> (-118.0*Math.pow(t, 0.0)*Math.pow(1.0-t, 3.0)-345.0*Math.pow(t, 1.0)*Math.pow(1.0-t, 2.0)-261.0*Math.pow(t, 2.0)*Math.pow(1.0-t, 1.0)-81.5*Math.pow(t, 3.0)*Math.pow(1.0-t, 0.0)) * 0.054733);
+        fourthEquation = new BezierCurve((t) -> (131.5*Math.pow(t, 0.0)*Math.pow(1.0-t, 3.0)+646.5*Math.pow(t, 1.0)*Math.pow(1.0-t, 2.0)+718.5*Math.pow(t, 2.0)*Math.pow(1.0-t, 1.0)+215.5*Math.pow(t, 3.0)*Math.pow(1.0-t, 0.0)) * 0.06
+                                        , (t) -> (-81.0*Math.pow(t, 0.0)*Math.pow(1.0-t, 3.0)-228.0*Math.pow(t, 1.0)*Math.pow(1.0-t, 2.0)-145.5*Math.pow(t, 2.0)*Math.pow(1.0-t, 1.0)-36.0*Math.pow(t, 3.0)*Math.pow(1.0-t, 0.0)) * 0.054733);
+        fifthEquation = new BezierCurve((t) -> (216.0*Math.pow(t, 0.0)*Math.pow(1.0-t, 3.0)+490.5*Math.pow(t, 1.0)*Math.pow(1.0-t, 2.0)+541.5*Math.pow(t, 2.0)*Math.pow(1.0-t, 1.0)+223.5*Math.pow(t, 3.0)*Math.pow(1.0-t, 0.0)) * 0.06
+                                        , (t) -> (-36.0*Math.pow(t, 0.0)*Math.pow(1.0-t, 3.0)-69.0*Math.pow(t, 1.0)*Math.pow(1.0-t, 2.0)-262.5*Math.pow(t, 2.0)*Math.pow(1.0-t, 1.0)-109.0*Math.pow(t, 3.0)*Math.pow(1.0-t, 0.0)) * 0.054733);
+        sixthEquation = new BezierCurve((t) -> (223.5*Math.pow(t, 0.0)*Math.pow(1.0-t, 3.0)+820.5*Math.pow(t, 1.0)*Math.pow(1.0-t, 2.0)+873.0*Math.pow(t, 2.0)*Math.pow(1.0-t, 1.0)+235.5*Math.pow(t, 3.0)*Math.pow(1.0-t, 0.0)) * 0.06
+                                        , (t) -> (-109.0*Math.pow(t, 0.0)*Math.pow(1.0-t, 3.0)-409.5*Math.pow(t, 1.0)*Math.pow(1.0-t, 2.0)-204.0*Math.pow(t, 2.0)*Math.pow(1.0-t, 1.0)-77.0*Math.pow(t, 3.0)*Math.pow(1.0-t, 0.0)) * 0.054733);
+        seventhEquation = new BezierCurve((t) -> (235.5*Math.pow(t, 0.0)*Math.pow(1.0-t, 3.0)+526.5*Math.pow(t, 1.0)*Math.pow(1.0-t, 2.0)+475.5*Math.pow(t, 2.0)*Math.pow(1.0-t, 1.0)+40.5*Math.pow(t, 3.0)*Math.pow(1.0-t, 0.0)) * 0.06
+                                        , (t) -> (-77.0*Math.pow(t, 0.0)*Math.pow(1.0-t, 3.0)-250.5*Math.pow(t, 1.0)*Math.pow(1.0-t, 2.0)-150.0*Math.pow(t, 2.0)*Math.pow(1.0-t, 1.0)-62.0*Math.pow(t, 3.0)*Math.pow(1.0-t, 0.0)) * 0.054733);
                                 
         state = State.FIRST_EQUATION;
         stopMoving = false;
@@ -86,6 +79,7 @@ public class Firstbezierpath {
                 if (distance > firstEquation.distance) {
                     state = State.SECOND_EQUATION;
                 }
+                SmartDashboard.putNumber("distance", firstEquation.distance);
 
                 t = distance / firstEquation.distance;
                 changeInX = firstEquation.funcX.apply(t + 0.0001) - firstEquation.funcX.apply(t);
@@ -122,7 +116,7 @@ public class Firstbezierpath {
                     state = State.FIFTH_EQUATION;
                 }
 
-                t = distance / fourthEquation.distance;
+                t = distance  / fourthEquation.distance;
                 changeInX = fourthEquation.funcX.apply(t + 0.0001) - fourthEquation.funcX.apply(t);
 
                 slope = -fourthEquation.derive(t);
@@ -171,7 +165,7 @@ public class Firstbezierpath {
         if (changeInX < 0) {
             angle += 180;
         }
-
+        SmartDashboard.putNumber("t value", t);
         return angle;
     }
 }
